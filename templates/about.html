@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>About Us</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+				color: #333;
+				display: flex;
+				flex-direction: column;
+				height: 80vh;
+				margin-top: 60px;
+			}
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				background-color: #0f151c;
+				overflow: hidden;
+				z-index: 1000;
+				color: white;
+			}
+			.navbar a {
+				float: left;
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 14px 20px;
+				text-decoration: none;
+				font-size: 17px;
+			}
+			.navbar a:hover {
+				background-color: lightslategray;
+			}
+			.navbar .logo {
+				font-size: 24px;
+				font-weight: bold;
+				padding: 14px 20px;
+				float: left;
+			}
+			.navbar .menu {
+				float: right;
+			}
+			.container {
+				padding: 20px;
+				width: 600px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			h1 {
+				text-align: center;
+				color: black;
+			}
+			p {
+				text-align: center;
+				color: lightslategray;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="logo">ExamSystem</div>
+			<div class="menu">
+				<a href="{% url 'home' %}">Home</a>
+				<a href="{% url 'student_login' %}">Login</a>
+				<a href="{% url 'student_signup' %}">Signup</a>
+				<a href="{% url 'about' %}">About</a>
+				<a href="{% url 'help_center' %}">Help</a>
+			</div>
+		</div>
+		<div class="container">
+			<h1>About Us</h1>
+			<p>
+				Welcome to the ExamSystem, where you can take exams, view your marks,
+				and track your progress. Our system is designed to provide a
+				comprehensive and user-friendly experience for both students and
+				educators.
+			</p>
+			<p>
+				Our mission is to make examination management and academic assessment
+				more accessible and efficient. We offer a range of features including
+				exam creation, question randomization, and instant results.
+			</p>
+			<p>Thank you for using ExamSystem!</p>
+		</div>
+	</body>
+</html>

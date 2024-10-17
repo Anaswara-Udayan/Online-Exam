@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>View Marks</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+				color: #333;
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+				margin-top: 60px;
+			}
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				background-color: #0f151c;
+				overflow: hidden;
+				z-index: 1000;
+				color: white;
+			}
+			.navbar a {
+				float: left;
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 14px 20px;
+				text-decoration: none;
+				font-size: 17px;
+			}
+			.navbar a:hover {
+				background-color: lightslategray;
+			}
+			.navbar .logo {
+				font-size: 24px;
+				font-weight: bold;
+				padding: 14px 20px;
+				float: left;
+			}
+			.navbar .menu {
+				float: right;
+			}
+			.sidebar {
+				position: fixed;
+				top: 50px;
+				left: 0;
+				width: 200px;
+				background-color: #323538;
+				color: white;
+				height: calc(100vh - 60px);
+				padding-top: 20px;
+				box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+			}
+			.sidebar a {
+				display: block;
+				color: white;
+				padding: 10px 15px;
+				text-decoration: none;
+				font-size: 16px;
+				margin: 5px 0;
+				border-radius: 5px;
+			}
+			.sidebar a:hover {
+				background-color: black;
+			}
+			.content {
+				margin-left: 250px;
+				padding: 20px;
+				flex: 1;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+			table,
+			th,
+			td {
+				border: 1px solid #ddd;
+			}
+			th,
+			td {
+				padding: 10px;
+				text-align: left;
+			}
+			th {
+				background-color: lightslategrey;
+				color: white;
+			}
+			h1,
+			h2 {
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="logo">ExamSystem</div>
+			<div class="menu">
+				<a href="{% url 'logout' %}">Logout</a>
+			</div>
+		</div>
+		<div class="sidebar">
+			<a href="{% url 'student_dashboard' %}">Dashboard</a>
+			<a href="{% url 'exam_list' %}">Exams</a>
+			<a href="{% url 'available_exams' %}">Marks</a>
+		</div>
+		<div class="content">
+			<h1>Attended Exams</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Time Limit (minutes)</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for exam in exams %}
+					<tr>
+						<td>{{ exam.title }}</td>
+						<td>{{ exam.time_limit }}</td>
+						<td><a href="{% url 'view_marks' exam.id %}">View Marks</a></td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="3">No exams available</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

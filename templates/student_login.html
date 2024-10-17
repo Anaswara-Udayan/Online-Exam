@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Student Login</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+				color: #333;
+				display: flex;
+				flex-direction: column;
+				height: 80vh;
+				margin-top: 60px;
+			}
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				background-color: #0f151c;
+				overflow: hidden;
+				z-index: 1000;
+				color: white;
+			}
+			.navbar a {
+				float: left;
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 14px 20px;
+				text-decoration: none;
+				font-size: 17px;
+			}
+			.navbar a:hover {
+				background-color: lightslategray;
+			}
+			.navbar .logo {
+				font-size: 24px;
+				font-weight: bold;
+				padding: 14px 20px;
+				float: left;
+			}
+			.navbar .menu {
+				float: right;
+			}
+			form {
+				display: inline-block;
+				text-align: left;
+				max-width: 300px;
+				margin: 20px auto;
+				background: #fff;
+				padding: 20px;
+				border-radius: 5px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			input[type="text"],
+			input[type="password"],
+			input[type="email"] {
+				width: 100%;
+				padding: 5px;
+				margin: 10px 0;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			button {
+				font-size: 16px;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 5px;
+				color: white;
+				background-color: lightslategray;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: black;
+			}
+			a {
+				display: block;
+				margin-top: 10px;
+				color: lightslategray;
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="logo">ExamSystem</div>
+			<div class="menu">
+				<a href="{% url 'home' %}">Home</a>
+				<a href="{% url 'student_login' %}">Login</a>
+				<a href="{% url 'student_signup' %}">Signup</a>
+				<a href="{% url 'about' %}">About</a>
+				<a href="{% url 'help_center' %}">Help</a>
+			</div>
+		</div>
+		<div class="container">
+			<h2>Student Login</h2>
+			<form method="post">
+				{% csrf_token %} {{ form.as_p }}
+				<button type="submit">Login</button>
+			</form>
+			<div class="message">
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+						{{ message }}
+					</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
+			<p>
+				Don't have an account?
+				<a href="{% url 'student_signup' %}">Create one</a>
+			</p>
+		</div>
+	</body>
+</html>
